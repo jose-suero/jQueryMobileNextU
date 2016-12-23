@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width = device-width, initial-scale=1"  charset="utf-8" />
+	<title>Evaluación Final - jQuery Mobile</title>
+	<link rel="stylesheet" type="text/css" href="js/jquery.mobile-1.4.5.css" />
+	<style type="text/css">
+		#page2,
+		#dvMap {
+			width: 100%;
+			height: 150px;
+			padding: 0
+		}
+	</style>
+	<script src="js/external/jquery/jquery.js"></script>
+	<script src="js/jquery.mobile-1.4.5.js"></script>
+	
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+	<script type="text/javascript">
+		function cambiarPagina(page){
+			$.mobile.changePage("#"+page, {
+				transition: "none"
+			});
+		}	
+		
+		$(document).ready(function () {
+			$("#btnRegistrar").click(function () {
+			
+
+                    
+				var LatLng = new google.maps.LatLng(25.760527, -80.192800); 
+				var opciones = {            
+					zoom: 10,
+					center: LatLng,
+					mapTypeId: google.maps.MapTypeId.ROADMAP        
+				};
+				var mapa = new google.maps.Map(document.getElementById("dvMap"), opciones);
+				cambiarPagina("page2");
+			});
+		});
+	</script>
+</head>
+<body>
+	<div data-role="page" id="page1">
+		<div data-role="header"><h2>Gestión Hotel</h2></div>
+		<div data-role="content" class="ui-content">
+			<a data-role="button" id="btnRegistrar">Registrar Hotel</a>
+			<a href="#page3" data-role="button">Lista Hoteles</a>
+		</div>
+		<div data-role="footer"><h2>Gestión Hotel</h2></div>
+	</div>
+	
+	<div data-role="page" id="page2">
+		<div data-role="header"><h2>Registro de Hotel</h2></div>
+		<div data-role="content" class="ui-content">
+			<label for="txtNombre">Nombre:</label><input type="text" id="txtNombre" name="txtNombre" >
+			<hr />
+			<label>Ubicación:</label>
+			<div id="dvMap">
+			
+			</div>
+			<label for="txtCiudad">Ciudad:</label><input type="text" id="txtCiudad" name="txtCiudad" >
+			<hr />
+			<label for="txtTelefono">Teléfono:</label><input type="text" id="txtTelefono" name="txtTelefono" >
+			<hr/>
+			<label for="txtEstrellas">Estrellas:</label><input type="text" id="txtEstrellas" name="txtEstrellas" >
+			<hr/>		
+			<a data-role="button">Registrar Hotel</a>
+			<a href="#page1" data-role="button">Volver</a>
+		</div>
+		<div data-role="footer"></div>
+	</div>
+	
+	<div data-role="page" id="page3">
+		<div data-role="header"><h2>Lista Hoteles</h2></div>
+		<div data-role="content" class="ui-content"></div>
+		<a href="#page1" data-role="button">Volver</a>
+	</div>
+	
+	<div data-role="page" id="page4">
+		<div data-role="header"><h2>Datos Hotel</h2></div>
+		<div data-role="content" class="ui-content">
+			<label for="lblNombre">Nombre:</label>&nbsp;<span id="lblNombre">[nombre]</span>
+			<label for="lblCiudad">Ciudad:</label>&nbsp;<span id="lblCiudad">[ciudad]</span>
+			<label for="lblTelefono">Teléfono:</label>&nbsp;<span id="lblTelefono">[telefono]</span>
+			<label for="lblEstrellas">Estrellas:</label>&nbsp;<span id="lblEstrellas">[estrellas]</span>
+		</div>
+	</div>
+</body>
+</html>
